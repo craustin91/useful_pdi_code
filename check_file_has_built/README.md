@@ -1,1 +1,2 @@
-test
+This logic checks that a file has been fully built (i.e. is not currently being written to) as part of an ETL. 
+The code checks the size of a file and writes this value to a variable. After a short sleep, the file is checked again and the updated size written to a second variable. Then a simple evaluation checks that the variables are equal - if not, i.e. the size is larger after the sleep, the file is still being written to and the ETL should abort until the file is fully compiled.
