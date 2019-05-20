@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>j_main</name>
   <description />
   <extended_description />
   <job_version />
-  <directory>/</directory>
+  <job_status>0</job_status>
+  <directory>/check_file_has_built</directory>
   <created_user>-</created_user>
   <created_date>2018/09/24 08:15:26.637</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2018/09/24 08:15:26.637</modified_date>
+  <modified_date>2019/05/20 11:08:06.072</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -310,10 +310,11 @@
       <name>Transformation</name>
       <description />
       <type>TRANS</type>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id />
-      <filename>${Internal.Entry.Current.Directory}/check_file_size_1.ktr</filename>
-      <transname />
+      <filename />
+      <transname>check_file_size_1</transname>
+      <directory>${Internal.Entry.Current.Directory}</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -346,7 +347,7 @@
       <name>Wait for</name>
       <description />
       <type>DELAY</type>
-      <maximumTimeout>2</maximumTimeout>
+      <maximumTimeout>1</maximumTimeout>
       <scaletime>1</scaletime>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -358,10 +359,11 @@
       <name>Transformation 2</name>
       <description />
       <type>TRANS</type>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id />
-      <filename>${Internal.Entry.Current.Directory}/check_file_size_2.ktr</filename>
-      <transname />
+      <filename />
+      <transname>check_file_size_2</transname>
+      <directory>${Internal.Entry.Current.Directory}</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -540,8 +542,8 @@
 to a variable</note>
       <xloc>288</xloc>
       <yloc>352</yloc>
-      <width>168</width>
-      <heigth>50</heigth>
+      <width>199</width>
+      <heigth>58</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -561,8 +563,8 @@ to a variable</note>
       <note>Short sleep</note>
       <xloc>480</xloc>
       <yloc>224</yloc>
-      <width>84</width>
-      <heigth>30</heigth>
+      <width>99</width>
+      <heigth>34</heigth>
       <fontname />
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
@@ -583,8 +585,8 @@ to a variable</note>
 to a second variable</note>
       <xloc>608</xloc>
       <yloc>352</yloc>
-      <width>168</width>
-      <heigth>50</heigth>
+      <width>199</width>
+      <heigth>58</heigth>
       <fontname />
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
@@ -604,8 +606,8 @@ to a second variable</note>
       <note>Checks var1=var2</note>
       <xloc>768</xloc>
       <yloc>224</yloc>
-      <width>126</width>
-      <heigth>30</heigth>
+      <width>150</width>
+      <heigth>34</heigth>
       <fontname />
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
