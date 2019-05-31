@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>postcode_evaluation</name>
+    <name>merge_rows_diff</name>
     <description />
     <extended_description />
     <trans_version />
@@ -427,38 +427,278 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/05/20 14:53:43.503</created_date>
+    <created_date>2019/05/30 14:03:07.016</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/05/31 09:09:58.733</modified_date>
+    <modified_date>2019/05/31 09:41:45.992</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Values:
+Ccc
+Aaa
+Hh
+Ddd
+Bbb
+Ggg</note>
+      <xloc>96</xloc>
+      <yloc>32</yloc>
+      <width>64</width>
+      <heigth>178</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Values:
+Ggg
+Ddd
+Aaa
+Eee
+Bbb
+Hhh</note>
+      <xloc>96</xloc>
+      <yloc>256</yloc>
+      <width>64</width>
+      <heigth>178</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
     <hop>
-      <from>generate postcode</from>
-      <to>regex for valid postcode</to>
+      <from>source1</from>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>regex for valid postcode</from>
-      <to>valid?</to>
+      <from>source2</from>
+      <to>Sort rows 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>valid?</from>
-      <to>valid</to>
+      <from>Sort rows</from>
+      <to>Merge Rows (diff)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>valid?</from>
-      <to>invalid</to>
+      <from>Sort rows 2</from>
+      <to>Merge Rows (diff)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Rows (diff)</from>
+      <to>rename evaulation</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>rename evaulation</from>
+      <to>find mismatches</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>generate postcode</name>
+    <name>Merge Rows (diff)</name>
+    <type>MergeRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <keys>
+      <key>field1</key>
+    </keys>
+    <values>
+      <value>field1</value>
+    </values>
+    <flag_field>evaluation</flag_field>
+    <reference>Sort rows</reference>
+    <compare>Sort rows 2</compare>
+    <compare>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>field1</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 2</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>field1</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>rename evaulation</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>evaluation</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>identical</replace_string>
+        <replace_by_string>present in both sources</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>evaluation</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>new</replace_string>
+        <replace_by_string>present only in source2</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>evaluation</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>deleted</replace_string>
+        <replace_by_string>present only in source1</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>source1</name>
     <type>DataGrid</type>
     <description />
     <distribute>Y</distribute>
@@ -470,7 +710,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>postcode</name>
+        <name>field1</name>
         <type>String</type>
         <format />
         <currency />
@@ -483,25 +723,22 @@
     </fields>
     <data>
       <line>
-        <item>S9 4PD</item>
+        <item>Ggg</item>
       </line>
       <line>
-        <item>TS18 0JB</item>
+        <item>Ddd</item>
       </line>
       <line>
-        <item>DL4 2BP</item>
+        <item>Aaa</item>
       </line>
       <line>
-        <item>S9 OWQ</item>
+        <item>Eee</item>
       </line>
       <line>
-        <item>DL23 MN</item>
+        <item>Bbb</item>
       </line>
       <line>
-        <item>DL31SP</item>
-      </line>
-      <line>
-        <item>this_is_not_a_postcode</item>
+        <item>Hhh</item>
       </line>
     </data>
     <cluster_schema />
@@ -512,14 +749,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>336</yloc>
+      <xloc>192</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>invalid</name>
-    <type>Dummy</type>
+    <name>source2</name>
+    <type>DataGrid</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -528,45 +765,39 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>regex for valid postcode</name>
-    <type>RegexEval</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <script>^([A-Za-z][A-Ha-hK-Yk-y]?[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}|[Gg][Ii][Rr] ?0[Aa]{2})$</script>
-    <matcher>postcode</matcher>
-    <resultfieldname>result</resultfieldname>
-    <usevar>N</usevar>
-    <allowcapturegroups>N</allowcapturegroups>
-    <replacefields>Y</replacefields>
-    <canoneq>N</canoneq>
-    <caseinsensitive>N</caseinsensitive>
-    <comment>N</comment>
-    <dotall>N</dotall>
-    <multiline>N</multiline>
-    <unicode>N</unicode>
-    <unix>N</unix>
     <fields>
+      <field>
+        <name>field1</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
+    <data>
+      <line>
+        <item>Ccc</item>
+      </line>
+      <line>
+        <item>Aaa</item>
+      </line>
+      <line>
+        <item>Hhh</item>
+      </line>
+      <line>
+        <item>Ddd</item>
+      </line>
+      <line>
+        <item>Bbb</item>
+      </line>
+      <line>
+        <item>Ggg</item>
+      </line>
+    </data>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -575,37 +806,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>336</yloc>
+      <xloc>192</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>valid</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>valid?</name>
+    <name>find mismatches</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -615,18 +822,18 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>valid</send_true_to>
-    <send_false_to>invalid</send_false_to>
+    <send_true_to />
+    <send_false_to />
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>result</leftvalue>
-        <function>=</function>
+        <leftvalue>evaluation</leftvalue>
+        <function>&lt;></function>
         <rightvalue />
         <value>
           <name>constant</name>
-          <type>Boolean</type>
-          <text>Y</text>
+          <type>String</type>
+          <text>present in both sources</text>
           <length>-1</length>
           <precision>-1</precision>
           <isnull>N</isnull>
@@ -642,8 +849,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>336</yloc>
+      <xloc>832</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
